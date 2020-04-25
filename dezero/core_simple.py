@@ -189,9 +189,9 @@ class Pow(Function):
     def backward(self, gy):
         x = self.inputs[0].data
         c = self.c
-        gx = c * x ** (c - 1) * gy
-        return gy
 
+        gx = c * x ** (c - 1) * gy
+        return gx
 
 class Config:
     enable_backprop = True
