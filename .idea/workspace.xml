@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="311d1d35-0acb-4056-bd9f-6fa2ab97dc5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/steps/step38.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dezero/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dezero/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dezero/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/dezero/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dezero/functons.py" beforeDir="false" afterPath="$PROJECT_DIR$/dezero/functons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dezero/functons.py" beforeDir="false" afterPath="$PROJECT_DIR$/dezero/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dezero/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/dezero/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/steps/step38.py" beforeDir="false" afterPath="$PROJECT_DIR$/steps/step38.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +18,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dezero/functons.py">
+        <entry file="file://$PROJECT_DIR$/dezero/functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="64" column="28" lean-forward="true" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+            <state relative-caret-position="176">
+              <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dezero/core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -29,12 +42,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dezero/core.py">
+        <entry file="file://$PROJECT_DIR$/dezero/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+            <state relative-caret-position="446">
+              <caret line="95" column="13" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dezero/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="315">
+              <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -52,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/steps/step38.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="300">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -75,6 +88,8 @@
       <find>grad</find>
       <find>create_graph</find>
       <find>create_grah</find>
+      <find>funct</find>
+      <find>functo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,7 +123,6 @@
         <option value="$PROJECT_DIR$/steps/step24.py" />
         <option value="$PROJECT_DIR$/dezero/core_simple.py" />
         <option value="$PROJECT_DIR$/sample.dot" />
-        <option value="$PROJECT_DIR$/dezero/utils.py" />
         <option value="$PROJECT_DIR$/steps/step26.py" />
         <option value="$PROJECT_DIR$/steps/step27.py" />
         <option value="$PROJECT_DIR$/steps/step28.py" />
@@ -119,9 +133,11 @@
         <option value="$PROJECT_DIR$/steps/step36.py" />
         <option value="$PROJECT_DIR$/steps/step37.py" />
         <option value="$PROJECT_DIR$/dezero/functons.py" />
-        <option value="$PROJECT_DIR$/dezero/core.py" />
-        <option value="$PROJECT_DIR$/steps/step38.py" />
         <option value="$PROJECT_DIR$/dezero/__init__.py" />
+        <option value="$PROJECT_DIR$/steps/step38.py" />
+        <option value="$PROJECT_DIR$/dezero/functions.py" />
+        <option value="$PROJECT_DIR$/dezero/core.py" />
+        <option value="$PROJECT_DIR$/dezero/utils.py" />
       </list>
     </option>
   </component>
@@ -523,16 +539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dezero/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/steps/step26.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -610,26 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dezero/functons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="64" column="28" lean-forward="true" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/steps/step38.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dezero/core_simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -639,17 +625,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dezero/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="315">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/steps/step38.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dezero/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dezero/core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state relative-caret-position="176">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dezero/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="95" column="13" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
