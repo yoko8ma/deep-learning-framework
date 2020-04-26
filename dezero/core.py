@@ -1,6 +1,7 @@
 import numpy as np
 import weakref
 import contextlib
+import dezero
 
 
 class Variable:
@@ -70,6 +71,11 @@ class Variable:
 
     def cleangrad(self):
         self.grad = None
+
+    def reshape(self, *shape):
+        if len(shape) == 1 and isinstance(shape[0], (tuple, list)):
+            shape = shape[0]
+        return dezero.functions.reshape(self, shape)
 
     @property
     def shape(self):
