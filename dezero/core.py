@@ -60,6 +60,7 @@ class Variable:
                     if x.grad is None:
                         x.grad = gx
                     else:
+                        print(type(gx))
                         x.grad = x.grad + gx
 
                     if x.creator is not None:
@@ -143,7 +144,8 @@ class Add(Function):
         if self.x0_shape != self.x1_shape:
             gx0 = dezero.functions.sum_to(gx0, self.x0_shape)
             gx1 = dezero.functions.sum_to(gx1, self.x1_shape)
-        return gy, gy
+        return gx0, gx1
+
 
 class Square(Function):
     def forward(self, x):
