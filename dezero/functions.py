@@ -11,6 +11,7 @@ class Sin(Function):
     def backward(self, gy):
         x, = self.inputs
         gx = gy * cos(x)
+        return gx
 
 
 def sin(x):
