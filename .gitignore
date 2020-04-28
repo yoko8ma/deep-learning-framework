@@ -1,5 +1,3 @@
 .idea/*
 *.pyc
-.idea/deep-learning-framework.iml
-.idea/misc.xml
-.idea/workspace.xml
+*.pyc
