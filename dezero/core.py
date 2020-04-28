@@ -140,14 +140,14 @@ class Add(Function):
     def forward(self, x0, x1):
         self.x0_shape, self.x1_shape = x0.shape, x1.shape
         y = x0 + x1
-        return y
+        return (y,)
 
     def backward(self, gy):
         gx0, gx1 = gy, gy
-        if self.x0_shape != self.x1_shape:  # for broadcaset
+        if self.x0_shape != self.x1_shape:
             gx0 = dezero.functions.sum_to(gx0, self.x0_shape)
             gx1 = dezero.functions.sum_to(gx1, self.x1_shape)
-        return gx0, gx1
+        return gy, gy
 
 
 def add(x0, x1):
@@ -312,14 +312,13 @@ def as_array(x):
 
 
 def setup_variable():
-    Variable.__add__ = add
-    Variable.__radd__ = add
     Variable.__mul__ = mul
+    Variable.__radd__ = add
+    Variable.__add__ = add
     Variable.__rmul__ = mul
     Variable.__neg__ = neg
     Variable.__sub__ = sub
     Variable.__rsub__ = rsub
-    Variable.__truediv__ = div
-    Variable.__rtruediv__ = rdiv
+    Variable.__truediv = div
+    Variable.__rturediv = rdiv
     Variable.__pow__ = pow
-    
