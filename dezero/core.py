@@ -69,7 +69,7 @@ class Variable:
                     for y in f.outputs:
                         y().grad = None
 
-    def cleangrad(self):
+    def cleargrad(self):
         self.grad = None
 
     def reshape(self, *shape):
@@ -317,6 +317,6 @@ def setup_variable():
     Variable.__neg__ = neg
     Variable.__sub__ = sub
     Variable.__rsub__ = rsub
-    Variable.__truediv = div
-    Variable.__rturediv = rdiv
+    Variable.__truediv__ = div
+    Variable.__rtruediv__ = rdiv
     Variable.__pow__ = pow
