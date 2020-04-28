@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from dezero import Variable
 import dezero.functions as F
 
+
 # Generate toy dataset
 np.random.seed(0)
 x = np.random.rand(100, 1)
