@@ -1,9 +1,5 @@
 import os
 import subprocess
-import urllib.request
-import numpy as np
-from dezero import as_variable
-from dezero import Variable
 
 
 def _dot_var(v, verbose=False):
@@ -14,22 +10,19 @@ def _dot_var(v, verbose=False):
         if v.name is not None:
             name += ': '
         name += str(v.shape) + ' ' + str(v.dtype)
-
     return dot_var.format(id(v), name)
 
 
 def _dot_func(f):
-    # for function
     dot_func = '{} [label="{}", color=lightblue, style=filled, shape=box]\n'
-    ret = dot_func.format(id(f), f.__class__.__name__)
+    txt = dot_func.format(id(f), f.__class__.__name__)
 
-    # for edge
     dot_edge = '{} -> {}\n'
     for x in f.inputs:
-        ret += dot_edge.format(id(x), id(f))
-    for y in f.outputs:  # y is weakref
-        ret += dot_edge.format(id(f), id(y()))
-    return ret
+        txt += dot_edge.format(id(x), id(f))
+    for y in f.outputs:
+        txt += dot_edge.format(id(f), id(y()))
+    return txt
 
 
 def get_dot_graph(output, verbose=True):
@@ -40,7 +33,6 @@ def get_dot_graph(output, verbose=True):
     def add_func(f):
         if f not in seen_set:
             funcs.append(f)
-            # funcs.sort(key=lambda x: x.generation)
             seen_set.add(f)
 
     add_func(output.creator)
@@ -69,16 +61,9 @@ def plot_dot_graph(output, verbose=True, to_file='graph.png'):
     with open(graph_path, 'w') as f:
         f.write(dot_graph)
 
-    extension = os.path.splitext(to_file)[1][1:]  # Extension(e.g. png, pdf)
+    extension = os.path.splitext(to_file)[1][1:]
     cmd = 'dot {} -T {} -o {}'.format(graph_path, extension, to_file)
     subprocess.run(cmd, shell=True)
-
-    # Return the image as a Jupyter Image object, to be displayed in-line.
-    try:
-        from IPython import display
-        return display.Image(filename=to_file)
-    except:
-        pass
 
 
 def reshape_sum_backward(gy, x_shape, axis, keepdims):
