@@ -1,7 +1,11 @@
-import numpy as np
 import weakref
+import numpy as np
 import contextlib
 import dezero
+
+
+class Config:
+    enable_backprop = True
 
 
 class Variable:
@@ -17,6 +21,26 @@ class Variable:
         self.grad = None    # 微分した値
         self.creator = None # 生成した関数
         self.generation = 0
+
+    @property
+    def shape(self):
+        return self.data.shape
+
+    @property
+    def ndim(self):
+        return self.data.ndim
+
+    @property
+    def size(self):
+        return self.data.size
+
+    @property
+    def dtype(self):
+        return self.data.dtype
+
+    @property
+    def T(self):
+        return dezero.functions.transpose(self)
 
     def __len__(self):
         return len(self.data)
@@ -84,26 +108,6 @@ class Variable:
     def sum(self, axis=None, keepdims=False):
         return dezero.functions.sum(self, axis, keepdims)
 
-    @property
-    def shape(self):
-        return self.data.shape
-
-    @property
-    def ndim(self):
-        return self.data.ndim
-
-    @property
-    def size(self):
-        return self.data.size
-
-    @property
-    def dtype(self):
-        return self.data.dtype
-
-    @property
-    def T(self):
-        return dezero.functions.transpose(self)
-
 
 class Function:
     def __call__(self, *inputs):
@@ -145,6 +149,12 @@ class Add(Function):
             gx1 = dezero.functions.sum_to(gx1, self.x1_shape)
         return gy, gy
 
+
+def add(x0, x1):
+    x1 = as_array(x1)
+    return Add()(x0, x1)
+
+
 class Square(Function):
     def forward(self, x):
         return x ** 2
@@ -155,6 +165,10 @@ class Square(Function):
         return gx
 
 
+def square(x):
+    return Square()(x)
+
+
 class Exp(Function):
     def forward(self, x):
         return np.exp(x)
@@ -163,6 +177,10 @@ class Exp(Function):
         x = self.input.data
         gx = np.exp(x) * gy
         return gx
+
+
+def exp(x):
+    return Exp()(x)
 
 
 class Mul(Function):
@@ -180,12 +198,21 @@ class Mul(Function):
         return gx0, gx1
 
 
+def mul(x0, x1):
+    x1 = as_array(x1)
+    return Mul()(x0, x1)
+
+
 class Neg(Function):
     def forward(self, x):
         return -x
 
     def backward(self, gy):
         return -gy
+
+
+def neg(x):
+    return Neg()(x)
 
 
 class Sub(Function):
@@ -203,6 +230,16 @@ class Sub(Function):
         return gx0, gx1
 
 
+def sub(x0, x1):
+    x1 = as_array(x1)
+    return Sub()(x0, x1)
+
+
+def rsub(x0, x1):
+    x1 = as_array(x1)
+    return Sub()(x1, x0)
+
+
 class Div(Function):
     def forward(self, x0, x1):
         y = x0 / x1
@@ -216,6 +253,16 @@ class Div(Function):
             gx0 = dezero.functions.sum_to(gx0, x0.shape)
             gx1 = dezero.functions.sum_to(gx1, x1.shape)
         return gx0, gx1
+
+
+def div(x0, x1):
+    x1 = as_array(x1)
+    return Div()(x0, x1)
+
+
+def rdiv(x0, x1):
+    x1 = as_array(x1)
+    return Div()(x1, x0)
 
 
 class Pow(Function):
@@ -232,57 +279,6 @@ class Pow(Function):
 
         gx = c * x ** (c - 1) * gy
         return gx
-
-class Config:
-    enable_backprop = True
-
-
-def as_array(x):
-    if np.isscalar(x):
-        return np.array(x)
-    return x
-
-
-def square(x):
-    return Square()(x)
-
-
-def exp(x):
-    return Exp()(x)
-
-
-def add(x0, x1):
-    x1 = as_array(x1)
-    return Add()(x0, x1)
-
-
-def mul(x0, x1):
-    x1 = as_array(x1)
-    return Mul()(x0, x1)
-
-
-def neg(x):
-    return Neg()(x)
-
-
-def sub(x0, x1):
-    x1 = as_array(x1)
-    return Sub()(x0, x1)
-
-
-def rsub(x0, x1):
-    x1 = as_array(x1)
-    return Sub()(x1, x0)
-
-
-def div(x0, x1):
-    x1 = as_array(x1)
-    return Div()(x0, x1)
-
-
-def rdiv(x0, x1):
-    x1 = as_array(x1)
-    return Div()(x1, x0)
 
 
 def pow(x, c):
@@ -307,6 +303,12 @@ def as_variable(obj):
     if isinstance(obj, Variable):
         return obj
     return Variable(obj)
+
+
+def as_array(x):
+    if np.isscalar(x):
+        return np.array(x)
+    return x
 
 
 def setup_variable():
