@@ -60,7 +60,6 @@ class Variable:
                     if x.grad is None:
                         x.grad = gx
                     else:
-                        print(type(gx))
                         x.grad = x.grad + gx
 
                     if x.creator is not None:
