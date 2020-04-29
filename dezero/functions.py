@@ -208,9 +208,7 @@ def linear_simple(x, W, b=None):
 
 class Sigmoid(Function):
     def forward(self, x):
-        xp = cuda.get_array_module(x)
-        # y = 1 / (1 + xp.exp(-x))
-        y = xp.tanh(x * 0.5) * 0.5 + 0.5  # Better implementation
+        y = np.tanh(x * 0.5) * 0.5 + 0.5  # Better implementation
         return y
 
     def backward(self, gy):
