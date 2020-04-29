@@ -4,6 +4,10 @@ import contextlib
 import dezero
 
 
+class Config:
+    enable_backprop = True
+
+
 class Variable:
     __array_priority__ = 200
 
@@ -132,6 +136,10 @@ class Function:
         raise NotImplementedError
 
 
+class Parameter(Variable):
+    pass
+
+
 class Add(Function):
     def forward(self, x0, x1):
         self.x0_shape, self.x1_shape = x0.shape, x1.shape
@@ -161,7 +169,7 @@ class Exp(Function):
         return np.exp(x)
 
     def backward(self, gy):
-        x = self.input.data
+        x = self.inputs[0].data
         gx = np.exp(x) * gy
         return gx
 
@@ -234,8 +242,6 @@ class Pow(Function):
         gx = c * x ** (c - 1) * gy
         return gx
 
-class Config:
-    enable_backprop = True
 
 
 def as_array(x):
