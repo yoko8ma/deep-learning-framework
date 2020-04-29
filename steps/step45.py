@@ -1,17 +1,22 @@
+if '__file__' in globals():
+    import os, sys
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import numpy as np
-from dezero import Variable, Model
-import dezero.functions as F
+from dezero import Model
 import dezero.layers as L
+import dezero.functions as F
 
-
-lr = 0.2
-max_iter = 10000
-hidden_size = 10
 
 np.random.seed(0)
 x = np.random.rand(100, 1)
 y = np.sin(2 * np.pi * x) + np.random.rand(100, 1)
 
+# Hyperparameters
+lr = 0.2
+max_iter = 10000
+hidden_size = 10
+
+# Model definition
 class TwoLayerNet(Model):
     def __init__(self, hidden_size, out_size):
         super().__init__()
@@ -19,9 +24,10 @@ class TwoLayerNet(Model):
         self.l2 = L.Linear(out_size)
 
     def forward(self, x):
-        y = F.sigmoid_simple(self.l1(x))
+        y = F.sigmoid(self.l1(x))
         y = self.l2(y)
         return y
+
 
 model = TwoLayerNet(hidden_size, 1)
 
@@ -34,15 +40,5 @@ for i in range(max_iter):
 
     for p in model.params():
         p.data -= lr * p.grad.data
-    if i % 1000:
+    if i % 1000 == 0:
         print(loss)
-
-# Plot
-# import matplotlib.pyplot as plt
-# plt.scatter(x, y, s=10)
-# plt.xlabel('x')
-# plt.ylabel('y')
-# t = np.arange(0, 1, .01)[:, np.newaxis]
-# y_pred = predict(t)
-# plt.plot(t, y_pred.data, color='r')
-# plt.show()

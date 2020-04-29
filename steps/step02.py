@@ -13,7 +13,7 @@ class Function:
         output = Variable(y)
         return output
 
-    def forward(self, x):
+    def forward(self, in_data):
         raise NotImplementedError()
 
 
@@ -25,4 +25,5 @@ class Square(Function):
 x = Variable(np.array(10))
 f = Square()
 y = f(x)
+print(type(y))
 print(y.data)

@@ -4,8 +4,8 @@ import numpy as np
 class Variable:
     def __init__(self, data):
         self.data = data
-        self.grad = None    # 微分した値
-        self.creator = None # 生成した関数
+        self.grad = None
+        self.creator = None
 
     def set_creator(self, func):
         self.creator = func
@@ -13,9 +13,9 @@ class Variable:
     def backward(self):
         funcs = [self.creator]
         while funcs:
-            f = funcs.pop()
-            x, y = f.input, f.output
-            x.grad = f.backward(y.grad)
+            f = funcs.pop()  # 1. Get a function
+            x, y = f.input, f.output  # 2. Get the function's input/output
+            x.grad = f.backward(y.grad)  # 3. Call the function's backward
 
             if x.creator is not None:
                 funcs.append(x.creator)
@@ -27,7 +27,7 @@ class Function:
         y = self.forward(x)
         output = Variable(y)
         output.set_creator(self)
-        self.input = input  # 入力されたされた変数を覚える
+        self.input = input
         self.output = output
         return output
 
@@ -35,12 +35,13 @@ class Function:
         raise NotImplementedError()
 
     def backward(self, gy):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class Square(Function):
     def forward(self, x):
-        return x ** 2
+        y = x ** 2
+        return y
 
     def backward(self, gy):
         x = self.input.data
@@ -50,7 +51,8 @@ class Square(Function):
 
 class Exp(Function):
     def forward(self, x):
-        return np.exp(x)
+        y = np.exp(x)
+        return y
 
     def backward(self, gy):
         x = self.input.data
@@ -67,23 +69,7 @@ a = A(x)
 b = B(a)
 y = C(b)
 
-# 逆向きに計算グラフのノードを辿る
-assert y.creator == C
-assert y.creator.input == b
-
-y.grad = np.array(1.0)
-C = y.creator
-b = C.input
-b.grad = C.backward(y.grad)
-B = b.creator
-a = B.input
-a.grad = B.backward(b.grad)
-A = a.creator
-x = A.input
-x.grad = A.backward(a.grad)
-print(x.grad)
-
-# 逆伝播
+# backward
 y.grad = np.array(1.0)
 y.backward()
 print(x.grad)

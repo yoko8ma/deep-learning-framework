@@ -12,19 +12,20 @@ class Function:
         x = input.data
         y = self.forward(x)
         output = Variable(y)
-        self.input = input  # 入力されたされた変数を覚える
+        self.input = input
         return output
 
     def forward(self, x):
         raise NotImplementedError()
 
     def backward(self, gy):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class Square(Function):
     def forward(self, x):
-        return x ** 2
+        y = x ** 2
+        return y
 
     def backward(self, gy):
         x = self.input.data
@@ -34,7 +35,8 @@ class Square(Function):
 
 class Exp(Function):
     def forward(self, x):
-        return np.exp(x)
+        y = np.exp(x)
+        return y
 
     def backward(self, gy):
         x = self.input.data

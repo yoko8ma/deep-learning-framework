@@ -8,8 +8,8 @@ class Variable:
                 raise TypeError('{} is not supported'.format(type(data)))
 
         self.data = data
-        self.grad = None    # 微分した値
-        self.creator = None # 生成した関数
+        self.grad = None
+        self.creator = None
 
     def set_creator(self, func):
         self.creator = func
@@ -28,16 +28,21 @@ class Variable:
                 funcs.append(x.creator)
 
 
+def as_array(x):
+    if np.isscalar(x):
+        return np.array(x)
+    return x
+
+
 class Function:
     def __call__(self, inputs):
-        xs = [x.data for x in inputs]
+        xs = [x.data for x in inputs]  # Get data from Variable
         ys = self.forward(xs)
-        outputs = [Variable(as_array(y)) for y in ys]
+        outputs = [Variable(as_array(y)) for y in ys]  # Wrap data
 
         for output in outputs:
             output.set_creator(self)
-
-        self.inputs = inputs  # 入力されたされた変数を覚える
+        self.inputs = inputs
         self.outputs = outputs
         return outputs
 
@@ -45,7 +50,7 @@ class Function:
         raise NotImplementedError()
 
     def backward(self, gys):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class Add(Function):
@@ -53,39 +58,6 @@ class Add(Function):
         x0, x1 = xs
         y = x0 + x1
         return (y,)
-
-
-class Square(Function):
-    def forward(self, x):
-        return x ** 2
-
-    def backward(self, gy):
-        x = self.input.data
-        gx = 2 * x * gy
-        return gx
-
-
-class Exp(Function):
-    def forward(self, x):
-        return np.exp(x)
-
-    def backward(self, gy):
-        x = self.input.data
-        gx = np.exp(x) * gy
-        return gx
-
-def as_array(x):
-    if np.isscalar(x):
-        return np.array(x)
-    return x
-
-
-def square(x):
-    return Square()(x)
-
-
-def exp(x):
-    return Exp()(x)
 
 
 xs = [Variable(np.array(2)), Variable(np.array(3))]
